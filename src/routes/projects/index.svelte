@@ -1,4 +1,5 @@
 <script context="module">
+	import { fade } from 'svelte/transition';
 	export function preload() {
 		return this.fetch(`projects.json`).then(r => r.json()).then(projects => {
 			return { projects };
@@ -23,13 +24,13 @@
 <svelte:head>
 	<title>Projects</title>
 </svelte:head>
-
+<div in:fade>
 <h1>Projects</h1>
 {#each projects as project}
 	<div>
 		<a rel="prefetch" href="projects/{project.slug}"><h2>{project.title}</h2></a>
-		<img src={project.image} alt="Successkid">
+		<img src="images/{project.image}" alt={project.description}>
 		<p>{project.description}</p>
 	</div>
 {/each}
-
+</div>

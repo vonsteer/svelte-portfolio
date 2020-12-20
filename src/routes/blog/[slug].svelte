@@ -1,4 +1,5 @@
 <script context="module">
+	import { fade } from 'svelte/transition';
 	export async function preload({ params }) {
 		// the `slug` parameter is available because
 		// this file is called [slug].svelte
@@ -32,7 +33,7 @@
 	}
 
 	.content :global(pre) {
-		background-color: #f9f9f9;
+		background-color: #EDF2F4;
 		box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
 		padding: 0.5em;
 		border-radius: 2px;
@@ -57,8 +58,9 @@
 	<title>{post.title}</title>
 </svelte:head>
 
-<h1>{post.title}</h1>
 
-<div class="content">
+
+<div in:fade class="content">
+	<h1>{post.title}</h1>
 	{@html post.html}
 </div>
